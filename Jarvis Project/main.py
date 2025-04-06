@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import webbrowser
 import pyttsx3
+import musicLibrary
 
 engine = pyttsx3.init()
 recognizer = sr.Recognizer()
@@ -14,8 +15,10 @@ def openCommand(c):
         webbrowser.open("http://youtube.com")
     if "open linkedin" in c.lower():
         webbrowser.open("http://linkedin.com")
-    if "play rang" in c.lower():
-        webbrowser.open("https://www.youtube.com/watch?v=OdrOp7JwZiE&ab_channel=SaregamaMusic")
+    if c.lower().startswith("play"):
+        song = c.lower().split(" ")[1]
+        link = musicLibrary.music[song]
+        webbrowser.open(link)
 
 if __name__ == "__main__":
     speak("Hello from Jarvis")
